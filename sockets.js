@@ -58,9 +58,11 @@ module.exports = function (server, config) {
             }
             // leave any existing rooms
             removeFeed();
-            safeCb(cb)(null, describeRoom(name));
-            client.join(name);
-            client.room = name;
+            setTimeout ( function ( )  {
+              safeCb(cb)(null, describeRoom(name));
+              client.join(name);
+              client.room = name;
+            }, 0 );
         }
 
         // we don't want to pass "leave" directly because the
